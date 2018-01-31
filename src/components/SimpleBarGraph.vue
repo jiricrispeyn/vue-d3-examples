@@ -1,7 +1,8 @@
 <template>
   <div class="simple-bar-graph">
-    <svg ref="svg">
-
+    <svg ref="svg" :width="width + margin.left + margin.right" :height="height + margin.top + margin.bottom">
+      <g :style="{ 'transform': `translate(${margin.left}px, ${margin.top}px)` }">
+      </g>
     </svg>
   </div>
 </template>
