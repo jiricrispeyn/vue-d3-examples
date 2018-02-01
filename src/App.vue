@@ -1,10 +1,11 @@
 <template>
   <div id="app">
-    <simple-bar-graph />
+    <simple-bar-graph :data="data" v-if="data" />
   </div>
 </template>
 
 <script>
+import { csv } from 'd3-request'
 import SimpleBarGraph from './components/SimpleBarGraph';
 
 export default {
@@ -14,8 +15,19 @@ export default {
   },
   data() {
     return {
-      
+      data: null
     }
+  },
+  created() {
+    csv('/src/assets/sales.csv', (error, data) => {
+      if (error) {
+        throw error;
+      }
+
+      data = data.map(d => Object.assign({}, d, { sales: +d.sales }));
+
+      this.data = data;
+    });
   }
 }
 </script>
