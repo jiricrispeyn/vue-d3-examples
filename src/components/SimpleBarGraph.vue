@@ -39,7 +39,8 @@ export default {
     this.width = this.$el.getBoundingClientRect().width - this.margin.left - this.margin.right;
     this.height = this.$el.getBoundingClientRect().height - this.margin.top - this.margin.bottom;
 
-    this.x.range([0, this.width]);
+    this.x.range([0, this.width])
+          .padding(.1);
     this.y.range([this.height, 0]);
 
     this.update(this.data);
@@ -59,6 +60,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.bar {
+  fill: steelblue;
+}
 </style>
