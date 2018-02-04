@@ -4,12 +4,15 @@
       <g :style="{ 'transform': `translate(${margin.left}px, ${margin.top}px)` }">
         <rect class="bar" v-for="(item, index) in data" :key="index" :x="x(item.salesperson)" :width="x.bandwidth()" :y="y(item.sales)" :height="height - y(item.sales)" />
       </g>
+      <g ref="xAxis" />
+      <g ref="yAxis" />
     </svg>
   </div>
 </template>
 
 <script>
 import { scaleBand, scaleLinear } from 'd3-scale';
+import { axisBottom, axisLeft } from 'd3-axis';
 import { select } from 'd3-selection';
 import { max } from 'd3-array';
 
@@ -27,7 +30,9 @@ export default {
       height: 0,
       margin: { top: 20, right: 20, bottom: 30, left: 40 },
       x: scaleBand(),
-      y: scaleLinear()
+      y: scaleLinear(),
+      xAxis: axisBottom(),
+      yAxis: axisLeft()
     }
   },
   mounted() {
