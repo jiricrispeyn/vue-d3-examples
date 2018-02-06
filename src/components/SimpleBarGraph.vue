@@ -61,6 +61,11 @@ export default {
 
       return height < 0 ? 0 : height;
     }
+  },
+  watch: {
+    data: function (newData) {
+      this.update(data);
+    }
   }
 }
 </script>
